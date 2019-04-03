@@ -11,6 +11,7 @@ interface IPokemon { name: String, url: String };
 })
 export class PokeListComponent implements OnInit {
   pokemonList: IPokemon[];
+  pokemonFilter: string = "";
 
   constructor(private httpClient: HttpClient) { 
     this.loadPokemons();
@@ -26,6 +27,9 @@ export class PokeListComponent implements OnInit {
     this.pokemonList = (await this.httpClient
       .get<IPokeResults>(`https://pokeapi.co/api/v2/pokemon/?limit=${count}`)
       .toPromise()).results;
+    if (this.pokemonFilter != ""){
+      this.pokemonList = this.pokemonList.filter(pokemon => pokemon.name.includes(this.pokemonFilter));
+    }
   }
 
 }

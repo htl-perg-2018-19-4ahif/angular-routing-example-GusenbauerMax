@@ -1,4 +1,5 @@
+Filter: <input type="text" [(ngModel)]="pokemonFilter" (change)="loadPokemons()"><br>
+
 <ul *ngFor="let pokemon of pokemonList">
   <li><a routerLink="/pokemons/{{ pokemon.name }}">{{ pokemon.name }}</a></li>
-</ul>  
-
+</ul>
